@@ -1,3 +1,8 @@
+## [0.0.4] - 2021-03-18
+
+* add textStyle, margin and borderRadius properties in animatedTextBottomBar
+* make text and image property as required in BottomBarItem
+
 ## [0.0.3] - 2021-03-18
 
 * add activeColor and inactiveColor property to bottom bar item

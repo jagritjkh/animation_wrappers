@@ -9,7 +9,7 @@ To use this package, add `animation_wrappers` as a [dependency in your pubspec.y
 ## Add dependency
 ```
 dependencies:
-  animation_wrappers: ^0.0.3
+  animation_wrappers: ^0.0.4
 ```
 
 ## Import
@@ -39,3 +39,7 @@ FadedSlideAnimation(
     endOffset: Offset(0.5, 1),
 ),
 ```
+
+Many more animation wrappers and animated bottom bars will be added soon..!
+
+Made with :heart: by Jagrit

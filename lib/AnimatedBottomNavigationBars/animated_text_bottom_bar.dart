@@ -1,23 +1,33 @@
 import 'package:flutter/material.dart';
 
 ///animated bottom navigation bar with animated text
+
 ///children: list of bottom navigation bar items which consists of text and icon
 ///text: the title of the item
 ///icon: widget(image or icon) of the item
 ///onBarTap: function performed when a particular child item is pressed
 ///animatedTextDuration: duration of animated text (default value: Duration(milliseconds: 250))
 ///animatedTextCurve: curve of animated text (default value: Curves.easeInOut)
+///textStyle: styling of animated text
+///margin: margin of animated bottom navigation bar (default value: EdgeInsets.zero)
+///borderRadius: border radius of animated bottom navigation bar (default value: BorderRadius.zero)
 class AnimatedTextBottomBar extends StatefulWidget {
   final List<BottomBarItem> children;
   final Function onBarTap;
   final Duration animatedTextDuration;
   final Curve animatedTextCurve;
+  final TextStyle? textStyle;
+  final EdgeInsetsGeometry? margin;
+  final BorderRadiusGeometry? borderRadius;
 
   AnimatedTextBottomBar({
     required this.children,
     required this.onBarTap,
     this.animatedTextDuration = const Duration(milliseconds: 250),
     this.animatedTextCurve = Curves.easeInOut,
+    this.textStyle,
+    this.margin = EdgeInsets.zero,
+    this.borderRadius = BorderRadius.zero,
   });
 
   @override
@@ -32,8 +42,10 @@ class _AnimatedTextBottomBarState extends State<AnimatedTextBottomBar>
   Widget build(BuildContext context) {
     return Material(
       elevation: 10.0,
+      borderRadius: widget.borderRadius!,
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 10.0),
+        margin: widget.margin!,
         color: Theme.of(context).scaffoldBackgroundColor,
         child: Row(
           mainAxisSize: MainAxisSize.max,
@@ -68,10 +80,10 @@ class _AnimatedTextBottomBarState extends State<AnimatedTextBottomBar>
           child: Row(
             children: <Widget?>[
               ImageIcon(
-                AssetImage(item.image!),
+                AssetImage(item.image),
                 color: isSelected
                     ? item.activeColor ?? Theme.of(context).primaryColor
-                    : item.inactiveColor ?? Colors.black12,
+                    : item.inactiveColor ?? Colors.black,
               ),
               SizedBox(width: 10.0),
               AnimatedSize(
@@ -79,11 +91,12 @@ class _AnimatedTextBottomBarState extends State<AnimatedTextBottomBar>
                 curve: widget.animatedTextCurve,
                 vsync: this,
                 child: Text(
-                  isSelected ? item.text! : "",
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline2!
-                      .copyWith(fontWeight: FontWeight.w600),
+                  isSelected ? item.text : "",
+                  style: widget.textStyle ??
+                      Theme.of(context)
+                          .textTheme
+                          .headline2!
+                          .copyWith(fontWeight: FontWeight.w600),
                 ),
               ),
             ] as List<Widget>,
@@ -100,15 +113,17 @@ class _AnimatedTextBottomBarState extends State<AnimatedTextBottomBar>
 
 ///text: the text to be animated (it will be shown only when the item is selected
 ///icon: icon shown when the item is selected or unselected
+///activeColor: color of image(icon) when the item is selected
+///inactiveColor: color of image(icon) when the item is not selected
 class BottomBarItem {
-  final String? text;
-  final String? image;
+  final String text;
+  final String image;
   final Color? activeColor;
   final Color? inactiveColor;
 
   BottomBarItem({
-    this.text,
-    this.image,
+    required this.text,
+    required this.image,
     this.activeColor,
     this.inactiveColor,
   });

@@ -1,3 +1,7 @@
+## [0.0.3] - 2021-03-18
+
+* add activeColor and inactiveColor property to bottom bar item
+
 ## [0.0.2] - 2021-03-17
 
 * Migrate to null safety.

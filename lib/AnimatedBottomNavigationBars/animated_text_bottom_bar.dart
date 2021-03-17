@@ -67,7 +67,12 @@ class _AnimatedTextBottomBarState extends State<AnimatedTextBottomBar>
               borderRadius: BorderRadius.all(Radius.circular(30))),
           child: Row(
             children: <Widget?>[
-              item.icon,
+              ImageIcon(
+                AssetImage(item.image!),
+                color: isSelected
+                    ? item.activeColor ?? Theme.of(context).primaryColor
+                    : item.inactiveColor ?? Colors.black12,
+              ),
               SizedBox(width: 10.0),
               AnimatedSize(
                 duration: widget.animatedTextDuration,
@@ -96,8 +101,15 @@ class _AnimatedTextBottomBarState extends State<AnimatedTextBottomBar>
 ///text: the text to be animated (it will be shown only when the item is selected
 ///icon: icon shown when the item is selected or unselected
 class BottomBarItem {
-  String? text;
-  Widget? icon;
+  final String? text;
+  final String? image;
+  final Color? activeColor;
+  final Color? inactiveColor;
 
-  BottomBarItem({this.text, this.icon});
+  BottomBarItem({
+    this.text,
+    this.image,
+    this.activeColor,
+    this.inactiveColor,
+  });
 }

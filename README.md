@@ -9,7 +9,7 @@ To use this package, add `animation_wrappers` as a [dependency in your pubspec.y
 ## Add dependency
 ```
 dependencies:
-  animation_wrappers: ^0.0.1
+  animation_wrappers: ^0.0.3
 ```
 
 ## Import

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+///FadedScaleAnimation is build using FadeTransition and ScaleTransition
+
 ///fade and scale animation wrapper widget
 ///just wrap the child with this widget and widget will be animated
 ///child: the widget to be animated
@@ -11,7 +13,7 @@ class FadedScaleAnimation extends StatefulWidget {
   final Curve curve;
 
   FadedScaleAnimation(this.child,
-      {Key key,
+      {Key? key,
       this.durationInMilliseconds = 400,
       this.curve = Curves.decelerate})
       : super(key: key);
@@ -22,8 +24,8 @@ class FadedScaleAnimation extends StatefulWidget {
 
 class _FadedScaleAnimationState extends State<FadedScaleAnimation>
     with SingleTickerProviderStateMixin {
-  AnimationController controller;
-  CurvedAnimation animation;
+  AnimationController? controller;
+  late CurvedAnimation animation;
 
   @override
   void initState() {
@@ -34,8 +36,8 @@ class _FadedScaleAnimationState extends State<FadedScaleAnimation>
     )..addListener(() {
         setState(() {});
       });
-    animation = CurvedAnimation(parent: controller, curve: widget.curve);
-    controller.forward();
+    animation = CurvedAnimation(parent: controller!, curve: widget.curve);
+    controller!.forward();
   }
 
   @override

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+///FadedSlideAnimation is build using FadeTransition and SlideTransition
+
 ///fade and slide animation wrapper widget
 ///just wrap the child with this widget and widget will be animated
 ///child: the widget to be animated
@@ -18,9 +20,9 @@ class FadedSlideAnimation extends StatefulWidget {
 
   FadedSlideAnimation(
     this.child, {
-    Key key,
-    @required this.beginOffset,
-    @required this.endOffset,
+    Key? key,
+    required this.beginOffset,
+    required this.endOffset,
     this.durationInMilliseconds = 400,
     this.slideDurationInMilliseconds = 800,
     this.curve = Curves.decelerate,
@@ -33,10 +35,10 @@ class FadedSlideAnimation extends StatefulWidget {
 
 class _FadedSlideAnimationState extends State<FadedSlideAnimation>
     with TickerProviderStateMixin {
-  AnimationController controller;
-  CurvedAnimation animation;
-  AnimationController slideController;
-  Animation<Offset> offsetAnimation;
+  AnimationController? controller;
+  late CurvedAnimation animation;
+  AnimationController? slideController;
+  late Animation<Offset> offsetAnimation;
 
   @override
   void initState() {
@@ -47,8 +49,8 @@ class _FadedSlideAnimationState extends State<FadedSlideAnimation>
     )..addListener(() {
         setState(() {});
       });
-    animation = CurvedAnimation(parent: controller, curve: widget.curve);
-    controller.forward();
+    animation = CurvedAnimation(parent: controller!, curve: widget.curve);
+    controller!.forward();
     slideController = AnimationController(
       duration: const Duration(milliseconds: 800),
       vsync: this,
@@ -57,7 +59,7 @@ class _FadedSlideAnimationState extends State<FadedSlideAnimation>
       begin: widget.beginOffset,
       end: widget.endOffset,
     ).animate(CurvedAnimation(
-      parent: slideController,
+      parent: slideController!,
       curve: widget.slideCurve,
     ));
   }

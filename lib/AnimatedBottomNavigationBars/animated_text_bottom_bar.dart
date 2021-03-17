@@ -14,8 +14,8 @@ class AnimatedTextBottomBar extends StatefulWidget {
   final Curve animatedTextCurve;
 
   AnimatedTextBottomBar({
-    @required this.children,
-    @required this.onBarTap,
+    required this.children,
+    required this.onBarTap,
     this.animatedTextDuration = const Duration(milliseconds: 250),
     this.animatedTextCurve = Curves.easeInOut,
   });
@@ -66,7 +66,7 @@ class _AnimatedTextBottomBarState extends State<AnimatedTextBottomBar>
                   : Colors.transparent,
               borderRadius: BorderRadius.all(Radius.circular(30))),
           child: Row(
-            children: <Widget>[
+            children: <Widget?>[
               item.icon,
               SizedBox(width: 10.0),
               AnimatedSize(
@@ -74,14 +74,14 @@ class _AnimatedTextBottomBarState extends State<AnimatedTextBottomBar>
                 curve: widget.animatedTextCurve,
                 vsync: this,
                 child: Text(
-                  isSelected ? item.text : "",
+                  isSelected ? item.text! : "",
                   style: Theme.of(context)
                       .textTheme
-                      .headline2
+                      .headline2!
                       .copyWith(fontWeight: FontWeight.w600),
                 ),
               ),
-            ],
+            ] as List<Widget>,
           ),
         ),
       ));
@@ -90,9 +90,14 @@ class _AnimatedTextBottomBarState extends State<AnimatedTextBottomBar>
   }
 }
 
+///BottomBarItem is used as the child widget of animated text bottom bar given
+///to it's children property
+
+///text: the text to be animated (it will be shown only when the item is selected
+///icon: icon shown when the item is selected or unselected
 class BottomBarItem {
-  String text;
-  Widget icon;
+  String? text;
+  Widget? icon;
 
   BottomBarItem({this.text, this.icon});
 }

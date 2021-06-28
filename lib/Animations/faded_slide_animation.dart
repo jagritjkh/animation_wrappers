@@ -52,16 +52,13 @@ class _FadedSlideAnimationState extends State<FadedSlideAnimation>
     animation = CurvedAnimation(parent: controller!, curve: widget.curve);
     controller!.forward();
     slideController = AnimationController(
-      duration: const Duration(milliseconds: 800),
+      duration: Duration(milliseconds: widget.slideDurationInMilliseconds),
       vsync: this,
     )..forward();
-    offsetAnimation = Tween<Offset>(
-      begin: widget.beginOffset,
-      end: widget.endOffset,
-    ).animate(CurvedAnimation(
-      parent: slideController!,
-      curve: widget.slideCurve,
-    ));
+    offsetAnimation =
+        Tween<Offset>(begin: widget.beginOffset, end: widget.endOffset).animate(
+      CurvedAnimation(parent: slideController!, curve: widget.slideCurve),
+    );
   }
 
   @override

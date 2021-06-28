@@ -1,3 +1,7 @@
+## [0.0.5] - 2021-06-28
+
+* fix: slideDurationInMilliseconds is now assigned to the animation
+
 ## [0.0.4] - 2021-03-18
 
 * add textStyle, margin and borderRadius properties in animatedTextBottomBar

@@ -1,3 +1,9 @@
+## [1.0.0] - 2021-07-04
+
+* Breaking Change
+  - Now, child is changes to required named parameter for animation wrappers
+* update: example
+
 ## [0.0.5] - 2021-06-28
 
 * fix: slideDurationInMilliseconds is now assigned to the animation

@@ -12,8 +12,9 @@ class FadedScaleAnimation extends StatefulWidget {
   final int durationInMilliseconds;
   final Curve curve;
 
-  FadedScaleAnimation(this.child,
+  FadedScaleAnimation(
       {Key? key,
+      required this.child,
       this.durationInMilliseconds = 400,
       this.curve = Curves.decelerate})
       : super(key: key);
@@ -24,7 +25,7 @@ class FadedScaleAnimation extends StatefulWidget {
 
 class _FadedScaleAnimationState extends State<FadedScaleAnimation>
     with SingleTickerProviderStateMixin {
-  AnimationController? controller;
+  late AnimationController controller;
   late CurvedAnimation animation;
 
   @override
@@ -36,13 +37,13 @@ class _FadedScaleAnimationState extends State<FadedScaleAnimation>
     )..addListener(() {
         setState(() {});
       });
-    animation = CurvedAnimation(parent: controller!, curve: widget.curve);
-    controller!.forward();
+    animation = CurvedAnimation(parent: controller, curve: widget.curve);
+    controller.forward();
   }
 
   @override
   void dispose() {
-    controller?.dispose();
+    controller.dispose();
     super.dispose();
   }
 

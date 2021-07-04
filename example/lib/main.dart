@@ -1,9 +1,7 @@
 import 'package:animation_wrappers/animation_wrappers.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
@@ -24,14 +22,14 @@ class AnimationWrappers extends StatelessWidget {
       body: Column(
         children: [
           FadedScaleAnimation(
-            Container(
+            child: Container(
               height: 200,
               width: 200,
               color: Colors.red,
             ),
           ),
           FadedSlideAnimation(
-            Container(
+            child: Container(
               height: 200,
               width: 200,
               color: Colors.blue,

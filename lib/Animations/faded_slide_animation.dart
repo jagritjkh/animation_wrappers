@@ -18,9 +18,9 @@ class FadedSlideAnimation extends StatefulWidget {
   final Curve curve;
   final Curve slideCurve;
 
-  FadedSlideAnimation(
-    this.child, {
+  FadedSlideAnimation({
     Key? key,
+    required this.child,
     required this.beginOffset,
     required this.endOffset,
     this.durationInMilliseconds = 400,
@@ -35,9 +35,9 @@ class FadedSlideAnimation extends StatefulWidget {
 
 class _FadedSlideAnimationState extends State<FadedSlideAnimation>
     with TickerProviderStateMixin {
-  AnimationController? controller;
+  late AnimationController controller;
   late CurvedAnimation animation;
-  AnimationController? slideController;
+  late AnimationController slideController;
   late Animation<Offset> offsetAnimation;
 
   @override
@@ -49,22 +49,22 @@ class _FadedSlideAnimationState extends State<FadedSlideAnimation>
     )..addListener(() {
         setState(() {});
       });
-    animation = CurvedAnimation(parent: controller!, curve: widget.curve);
-    controller!.forward();
+    animation = CurvedAnimation(parent: controller, curve: widget.curve);
+    controller.forward();
     slideController = AnimationController(
       duration: Duration(milliseconds: widget.slideDurationInMilliseconds),
       vsync: this,
     )..forward();
     offsetAnimation =
         Tween<Offset>(begin: widget.beginOffset, end: widget.endOffset).animate(
-      CurvedAnimation(parent: slideController!, curve: widget.slideCurve),
+      CurvedAnimation(parent: slideController, curve: widget.slideCurve),
     );
   }
 
   @override
   void dispose() {
-    controller?.dispose();
-    slideController?.dispose();
+    controller.dispose();
+    slideController.dispose();
     super.dispose();
   }
 

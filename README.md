@@ -6,10 +6,14 @@ Animation Wrapper widgets, just wrap the child to be animated with this wrapper 
 
 To use this package, add `animation_wrappers` as a [dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/).
 
+## :star_struck: :heart_eyes: ** Major Update ** :heart_eyes: :star_struck:
+
+See example for all animation wrappers and animated text bottom bar
+
 ## Add dependency
 ```
 dependencies:
-  animation_wrappers: ^0.0.4
+  animation_wrappers: ^2.0.0
 ```
 
 ## Import
@@ -23,7 +27,7 @@ FadedScaleAnimation(
     Container(
         height: 200,
         width: 200,
-        color: Colors.red,
+        color: Colors.blue,
     ),
 ),
 ```
@@ -37,6 +41,26 @@ FadedSlideAnimation(
     ),
     beginOffset: Offset(0.5, 2),
     endOffset: Offset(0.5, 1),
+),
+```
+## Usage: FadeAnimation
+```
+FadeAnimation(
+    child: Container(
+        height: 200,
+        width: 200,
+        color: Colors.blue,
+    ),
+),
+```
+## Usage: ScaleAnimation
+```
+ScaleAnimation(
+    child: Container(
+        height: 200,
+        width: 200,
+        color: Colors.blue,
+    ),
 ),
 ```
 

@@ -1,3 +1,45 @@
+## [2.0.0] - 2021-07-22
+
+* Breaking Change
+    - In FadedSlideAnimation
+        - change: durationInMilliseconds to fadeDuration and of type Duration
+        - change: slideDurationInMilliseconds to slideDuration and of type Duration
+        - rename: curve to fadeCurve
+
+    - In FadedScaleAnimation
+        - change: durationInMilliseconds to fadeDuration and of type Duration
+        - rename: curve to fadeCurve
+
+    - In AnimatedTextBottomBar
+        - remove: activeColor from BottomBarItem and add: selectedItemColor to AnimatedTextBottomBar
+        - remove: inactiveColor from BottomBarItem and add: unselectedItemColor to AnimatedTextBottomBar
+
+* In AnimatedTextBottomBar
+    - add: elevation
+    - add: backgroundColor
+    - add: shadowColor
+    - add: selectedItemBorderRadius
+    - add: padding
+    - add: key
+    - add: iconData in BottomBarItem
+    - fix: margin and padding issues
+
+* In FadedScaleAnimation
+    - add: scaleDuration
+    - add: scaleCurve
+    - add: alignment for scale animation
+
+* change: directory name of AnimatedBottomNavigationBars to animated_bottom_navigation_bars
+* change: directory name of Animations to animations
+
+* update: documentation
+* add: fade animation (NEW)
+* add: scale animation (NEW)
+* add: textDirection in FadedSlideAnimation
+* make: text nullable
+* migrate: example to null safety
+* update: example with animated text bottom bar and newly added animation wrappers
+
 ## [1.0.0] - 2021-07-04
 
 * Breaking Change

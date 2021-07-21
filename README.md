@@ -6,7 +6,7 @@ Animation Wrapper widgets, just wrap the child to be animated with this wrapper 
 
 To use this package, add `animation_wrappers` as a [dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/).
 
-## :star_struck: :heart_eyes: ** Major Update ** :heart_eyes: :star_struck:
+## :star_struck: :heart_eyes: **Major Update** :heart_eyes: :star_struck:
 
 See example for all animation wrappers and animated text bottom bar
 

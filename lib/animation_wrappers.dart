@@ -13,8 +13,3 @@ export 'package:animation_wrappers/animations/fade_animation.dart';
 
 /// ScaleAnimation
 export 'package:animation_wrappers/animations/scale_animation.dart';
-
-///animated bottom bars
-
-/// AnimatedTextBottomBar
-export 'package:animation_wrappers/animated_bottom_navigation_bars/animated_text_bottom_bar.dart';

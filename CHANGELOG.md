@@ -1,3 +1,9 @@
+## [3.0.0] - 2021-07-27
+
+* Breaking Change
+    - Removed AnimatedTextBottomBar (you can now use animated_button_bars package for it).
+* update: example
+
 ## [2.0.0] - 2021-07-22
 
 * Breaking Change

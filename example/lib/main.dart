@@ -1,3 +1,4 @@
+import 'package:animated_button_bars/animated_button_bars.dart';
 import 'package:animation_wrappers/animation_wrappers.dart';
 import 'package:flutter/material.dart';
 
@@ -28,22 +29,26 @@ class _AnimationWrappersState extends State<AnimationWrappers> {
     ScaleContainer(),
   ];
 
-  final List<BottomBarItem> _barItems = [
-    BottomBarItem(
-      text: "Faded Scale",
+  final List<BarItem> _barItems = [
+    BarItem(
+      label: "Faded Scale",
       iconData: Icons.linear_scale,
+      activeColor: Colors.yellow,
     ),
-    BottomBarItem(
-      text: "Faded Slide",
+    BarItem(
+      label: "Faded Slide",
       iconData: Icons.slideshow,
+      activeColor: Colors.red,
     ),
-    BottomBarItem(
-      text: "Fade",
+    BarItem(
+      label: "Fade",
       iconData: Icons.blur_linear,
+      activeColor: Colors.blue,
     ),
-    BottomBarItem(
-      text: "Scale",
+    BarItem(
+      label: "Scale",
       iconData: Icons.horizontal_rule_rounded,
+      activeColor: Colors.green,
     ),
   ];
 
@@ -51,16 +56,21 @@ class _AnimationWrappersState extends State<AnimationWrappers> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Animation Wrappers'),
+        title: Text(
+          'Animation Wrappers',
+          style: Theme.of(context).textTheme.headline6,
+        ),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        centerTitle: true,
       ),
       body: _children[_currentIndex],
-      bottomNavigationBar: AnimatedTextBottomBar(
-        onBarTap: (index) {
+      bottomNavigationBar: AnimatedTextBar(
+        onTap: (index) {
           setState(() {
             _currentIndex = index;
           });
         },
-        children: _barItems,
+        items: _barItems,
       ),
     );
   }
@@ -75,7 +85,7 @@ class FadedScaleContainer extends StatelessWidget {
         child: Container(
           height: 200,
           width: 200,
-          color: Theme.of(context).primaryColor,
+          color: Colors.yellow,
         ),
       ),
     );
@@ -90,7 +100,7 @@ class FadedSlideContainer extends StatelessWidget {
       child: Container(
         height: 200,
         width: 200,
-        color: Theme.of(context).primaryColor,
+        color: Colors.red,
       ),
       beginOffset: Offset(0.7, 2),
       endOffset: Offset(0.5, 1),
@@ -107,7 +117,7 @@ class FadeContainer extends StatelessWidget {
         child: Container(
           height: 200,
           width: 200,
-          color: Theme.of(context).primaryColor,
+          color: Colors.blue,
         ),
       ),
     );
@@ -123,7 +133,7 @@ class ScaleContainer extends StatelessWidget {
         child: Container(
           height: 200,
           width: 200,
-          color: Theme.of(context).primaryColor,
+          color: Colors.green,
         ),
       ),
     );

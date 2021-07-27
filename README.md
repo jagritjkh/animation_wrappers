@@ -1,6 +1,6 @@
 # animation_wrappers
 
-Animation Wrapper widgets, just wrap the child to be animated with this wrapper widget and that child will be animated. It also contains animated bottom navigation bars.
+Animation Wrapper widgets, just wrap the child to be animated with this wrapper widget and that child will be animated.
 
 ## Getting Started
 
@@ -8,7 +8,7 @@ To use this package, add `animation_wrappers` as a [dependency in your pubspec.y
 
 ## :star_struck: :heart_eyes: **Major Update** :heart_eyes: :star_struck:
 
-See example for all animation wrappers and animated text bottom bar
+See example for all animation wrappers
 
 ## Add dependency
 ```
@@ -64,6 +64,6 @@ ScaleAnimation(
 ),
 ```
 
-Many more animation wrappers and animated bottom bars will be added soon..!
+Many more animation wrappers will be added soon..!
 
 Made with :heart: by Jagrit

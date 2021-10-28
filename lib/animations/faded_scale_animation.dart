@@ -8,8 +8,8 @@ import 'package:flutter/widgets.dart';
 /// [child] : the widget to be animated
 /// [fadeDuration] : duration of animation of fade (default: Duration(milliseconds: 1000))
 /// [scaleDuration] : duration of animation of scale (default: Duration(milliseconds: 500))
-/// [fadeCurve] : curve of the animation (default: [Curves.decelerate])
-/// [scaleCurve] : curve of the animation (default: [Curves.decelerate])
+/// [fadeCurve] : curve of the fade animation (default: [Curves.decelerate])
+/// [scaleCurve] : curve of the scale animation (default: [Curves.decelerate])
 /// [alignment] : alignment of the scale animation (default: [Alignment.center])
 class FadedScaleAnimation extends StatefulWidget {
   final Widget child;

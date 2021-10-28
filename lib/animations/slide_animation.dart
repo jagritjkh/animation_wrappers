@@ -5,12 +5,15 @@ import 'package:flutter/widgets.dart';
 
 /// fade and scale animation wrapper widget
 /// just wrap the child with this widget and widget will be animated
+///
 /// [child] : the widget to be animated
 /// [beginOffset] : the starting position of widget to be animated
 /// [endOffset] : the ending position of widget to be animated
 /// [duration] : duration of animation of fade and scale (default: Duration(milliseconds: 500))
 /// [curve] : curve of the animation (default: [Curves.decelerate])
 /// [textDirection] : direction of the text for slide animation (default: [TextDirection.ltr])
+/// [controller] : animation controller of the animation (optional)
+/// if you give your own controller, no need to dispose the controller
 class SlideAnimation extends StatefulWidget {
   final Widget child;
   final Offset beginOffset;
@@ -18,6 +21,7 @@ class SlideAnimation extends StatefulWidget {
   final Duration duration;
   final Curve curve;
   final TextDirection textDirection;
+  final AnimationController? controller;
 
   SlideAnimation({
     Key? key,
@@ -27,6 +31,7 @@ class SlideAnimation extends StatefulWidget {
     this.duration = const Duration(milliseconds: 500),
     this.curve = Curves.decelerate,
     this.textDirection = TextDirection.ltr,
+    this.controller,
   }) : super(key: key);
 
   @override
@@ -43,17 +48,24 @@ class _SlideAnimationState extends State<SlideAnimation>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-      duration: widget.duration,
-      vsync: this,
-    )..addListener(() {
-        setState(() {});
-      });
+    _initController();
     _offsetAnimation =
         Tween<Offset>(begin: widget.beginOffset, end: widget.endOffset).animate(
       CurvedAnimation(parent: _controller, curve: widget.curve),
     );
     _controller.forward();
+  }
+
+  _initController() {
+    var controller = widget.controller;
+    if (controller != null) {
+      _controller = controller;
+    } else {
+      _controller = AnimationController(duration: widget.duration, vsync: this)
+        ..addListener(() {
+          setState(() {});
+        });
+    }
   }
 
   /// animation controller is being disposed for safety

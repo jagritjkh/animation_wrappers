@@ -8,16 +8,20 @@ import 'package:flutter/widgets.dart';
 /// [child] : the widget to be animated
 /// [duration] : duration of animation of fade (default: Duration(milliseconds: 1000))
 /// [curve] : curve of the animation (default: [Curves.decelerate])
+/// [controller] : animation controller of the animation (optional)
+/// if you give your own controller, no need to dispose the controller
 class FadeAnimation extends StatefulWidget {
   final Widget child;
   final Duration duration;
   final Curve curve;
+  final AnimationController? controller;
 
   FadeAnimation({
     Key? key,
     required this.child,
     this.duration = const Duration(milliseconds: 1000),
     this.curve = Curves.decelerate,
+    this.controller,
   }) : super(key: key);
 
   @override
@@ -34,14 +38,21 @@ class _FadeAnimationState extends State<FadeAnimation>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-      duration: widget.duration,
-      vsync: this,
-    )..addListener(() {
-        setState(() {});
-      });
+    _initController();
     _animation = CurvedAnimation(parent: _controller, curve: widget.curve);
     _controller.forward();
+  }
+
+  _initController() {
+    var controller = widget.controller;
+    if (controller != null) {
+      _controller = controller;
+    } else {
+      _controller = AnimationController(duration: widget.duration, vsync: this)
+        ..addListener(() {
+          setState(() {});
+        });
+    }
   }
 
   /// animation controller is being disposed for safety

@@ -1,6 +1,13 @@
-## [3.0.1+dev] - 2021-07-27
-* Add new SlideAnimation
-* update documentation
+## [3.0.2+dev] - 2021-10-28
+* add: optional controller parameter in fade_animation
+* add: optional controller parameter in slide_animation
+* add: optional controller parameter in scale_animation
+* add: new ScaledSlideAnimation
+* update: documentation
+
+## [3.0.1+dev] - 2021-10-28
+* add: new SlideAnimation
+* update: documentation
 
 ## [3.0.0] - 2021-07-27
 

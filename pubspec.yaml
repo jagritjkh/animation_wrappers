@@ -1,6 +1,6 @@
 name: animation_wrappers
 description: Animation Wrapper widgets, just wrap the child to be animated with this wrapper widget and that child will be animated.
-version: 3.0.0
+version: 3.0.2+dev
 homepage: https://github.com/jagritjkh/animation_wrappers
 
 environment:

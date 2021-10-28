@@ -13,7 +13,7 @@ See example for all animation wrappers
 ## Add dependency
 ```
 dependencies:
-  animation_wrappers: ^2.0.0
+  animation_wrappers: ^3.0.2
 ```
 
 ## Import

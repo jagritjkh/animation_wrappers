@@ -9,11 +9,14 @@ import 'package:flutter/widgets.dart';
 /// [duration] : duration of animation of fade and scale (default: Duration(milliseconds: 500))
 /// [curve] : curve of the animation (default: [Curves.decelerate])
 /// [alignment] : alignment of the scale animation (default: [Alignment.center])
+/// [controller] : animation controller of the animation (optional)
+/// if you give your own controller, no need to dispose the controller
 class ScaleAnimation extends StatefulWidget {
   final Widget child;
   final Duration duration;
   final Curve curve;
   final Alignment alignment;
+  final AnimationController? controller;
 
   ScaleAnimation({
     Key? key,
@@ -21,6 +24,7 @@ class ScaleAnimation extends StatefulWidget {
     this.duration = const Duration(milliseconds: 500),
     this.curve = Curves.decelerate,
     this.alignment = Alignment.center,
+    this.controller,
   }) : super(key: key);
 
   @override
@@ -37,14 +41,21 @@ class _ScaleAnimationState extends State<ScaleAnimation>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-      duration: widget.duration,
-      vsync: this,
-    )..addListener(() {
-        setState(() {});
-      });
+    _initController();
     _animation = CurvedAnimation(parent: _controller, curve: widget.curve);
     _controller.forward();
+  }
+
+  _initController() {
+    var controller = widget.controller;
+    if (controller != null) {
+      _controller = controller;
+    } else {
+      _controller = AnimationController(duration: widget.duration, vsync: this)
+        ..addListener(() {
+          setState(() {});
+        });
+    }
   }
 
   /// animation controller is being disposed for safety

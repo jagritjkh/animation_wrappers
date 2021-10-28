@@ -1,37 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-/// [ScaleAnimation] is build using [ScaleTransition]
+/// [SlideAnimation] is build using [SlideTransition]
 
 /// fade and scale animation wrapper widget
 /// just wrap the child with this widget and widget will be animated
 /// [child] : the widget to be animated
+/// [beginOffset] : the starting position of widget to be animated
+/// [endOffset] : the ending position of widget to be animated
 /// [duration] : duration of animation of fade and scale (default: Duration(milliseconds: 500))
 /// [curve] : curve of the animation (default: [Curves.decelerate])
-/// [alignment] : alignment of the scale animation (default: [Alignment.center])
-class ScaleAnimation extends StatefulWidget {
+/// [textDirection] : direction of the text for slide animation (default: [TextDirection.ltr])
+class SlideAnimation extends StatefulWidget {
   final Widget child;
+  final Offset beginOffset;
+  final Offset endOffset;
   final Duration duration;
   final Curve curve;
-  final Alignment alignment;
+  final TextDirection textDirection;
 
-  ScaleAnimation({
+  SlideAnimation({
     Key? key,
     required this.child,
+    required this.beginOffset,
+    required this.endOffset,
     this.duration = const Duration(milliseconds: 500),
     this.curve = Curves.decelerate,
-    this.alignment = Alignment.center,
+    this.textDirection = TextDirection.ltr,
   }) : super(key: key);
 
   @override
-  _ScaleAnimationState createState() => _ScaleAnimationState();
+  _SlideAnimationState createState() => _SlideAnimationState();
 }
 
-/// [SingleTickerProviderStateMixin] is used because ony one animation controller is being used for making [ScaleAnimation].
-class _ScaleAnimationState extends State<ScaleAnimation>
+/// [SingleTickerProviderStateMixin] is used because ony one animation controller is being used for making [SlideAnimation].
+class _SlideAnimationState extends State<SlideAnimation>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  late CurvedAnimation _animation;
+  late Animation<Offset> _offsetAnimation;
 
   /// controller is initialised in [initState] with the values defined or received as parameters in the widget
   @override
@@ -43,7 +49,10 @@ class _ScaleAnimationState extends State<ScaleAnimation>
     )..addListener(() {
         setState(() {});
       });
-    _animation = CurvedAnimation(parent: _controller, curve: widget.curve);
+    _offsetAnimation =
+        Tween<Offset>(begin: widget.beginOffset, end: widget.endOffset).animate(
+      CurvedAnimation(parent: _controller, curve: widget.curve),
+    );
     _controller.forward();
   }
 
@@ -56,10 +65,10 @@ class _ScaleAnimationState extends State<ScaleAnimation>
 
   @override
   Widget build(BuildContext context) {
-    return ScaleTransition(
-      scale: _animation,
+    return SlideTransition(
+      position: _offsetAnimation,
       child: widget.child,
-      alignment: widget.alignment,
+      textDirection: widget.textDirection,
     );
   }
 }

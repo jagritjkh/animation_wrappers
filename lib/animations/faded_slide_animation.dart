@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 /// fade and slide animation wrapper widget
 /// just wrap the child with this widget and widget will be animated
 /// [child] : the widget to be animated
+/// [beginOffset] : the starting position of widget to be animated
+/// [endOffset] : the ending position of widget to be animated
 /// [fadeDuration] : duration of animation of fade (default: Duration(milliseconds: 1000))
 /// [slideDuration] : duration of animation of slide (default: Duration(milliseconds: 500))
 /// [fadeCurve] : curve of the fade animation (default: [Curves.decelerate])
